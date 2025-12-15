@@ -1,0 +1,17 @@
+# ===== CLion =====
+.idea/
+cmake-build-*/
+
+# ===== Build files =====
+*.exe
+*.dll
+*.obj
+*.ilk
+*.pdb
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+
+# ===== User specific =====
+*.user
