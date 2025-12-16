@@ -3,13 +3,17 @@
 //
 #include "physics/PhysicsWorld.h"
 
+// 构造函数：创建无重力世界（台球在水平桌面）
 PhysicsWorld::PhysicsWorld()
-: world(b2Vec2(0.f, 0.f)) {}
+    : world(b2Vec2(0.f, 0.f)) {}
 
+// 每一帧推进物理
 void PhysicsWorld::step(float dt) {
-    world.Step(dt, 6, 2);
+    // velocityIterations 和 positionIterations
+    world.Step(dt, 8, 3);
 }
 
+// 返回世界引用
 b2World& PhysicsWorld::getWorld() {
     return world;
 }
