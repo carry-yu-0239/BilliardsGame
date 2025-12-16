@@ -1,6 +1,3 @@
-//
-// Created by tb16p666iSwanLily on 2025/12/15.
-//
 #pragma once    // 防止头文件重复包含
 
 #include <SFML/Graphics.hpp>

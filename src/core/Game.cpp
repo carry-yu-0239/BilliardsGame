@@ -1,6 +1,3 @@
-//
-// Created by tb16p666iSwanLily on 2025/12/15.
-//
 #include "core/Game.h"
 
 Game::Game()

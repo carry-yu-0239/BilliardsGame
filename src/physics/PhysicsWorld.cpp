@@ -1,6 +1,3 @@
-//
-// Created by tb16p666iSwanLily on 2025/12/15.
-//
 #include "physics/PhysicsWorld.h"
 
 // 构造函数：创建无重力世界（台球在水平桌面）
