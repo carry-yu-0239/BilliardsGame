@@ -11,6 +11,9 @@ class Ball {
     // 构造函数：在指定位置创建球
     Ball(PhysicsWorld& physics, sf::Vector2f position);
 
+    //  新增构造函数：可指定颜色的构造函数
+    Ball(PhysicsWorld& physics, sf::Vector2f position, sf::Color color);
+
     // 从物理世界同步位置
     void update();
 
