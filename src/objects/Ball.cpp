@@ -32,7 +32,7 @@ Ball::Ball(PhysicsWorld& physics, sf::Vector2f position) {
     body->CreateFixture(&fixtureDef);
 
     // 线性阻尼：模拟台面摩擦
-    body->SetLinearDamping(0.4f);
+    body->SetLinearDamping(0.08f);
 }
 
 // 更新图形位置
