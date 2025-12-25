@@ -50,7 +50,7 @@ void Game::processEvents() {
             window.close();
 
         //  按下鼠标，开始拖拽
-        if (auto* mouse = event->getIf<sf::Event::MouseButtonPressed>()) {
+        /*if (auto* mouse = event->getIf<sf::Event::MouseButtonPressed>()) {
             if (mouse->button == sf::Mouse::Button::Left) {
                 dragging = true;
                 dragStart = window.mapPixelToCoords({mouse->position.x, mouse->position.y});
