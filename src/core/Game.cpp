@@ -120,6 +120,19 @@ void Game::render() {
     //  绘制所有球
     for (auto& b : balls) b.draw(window);
 
+    //显示蓄力线
+    if (dragging) {
+        sf::Vector2f mousePos =
+            window.mapPixelToCoords(sf::Mouse::getPosition(window));
+
+        sf::Vertex line[] = {
+            sf::Vertex(balls[0].getPosition(), sf::Color::White),
+            sf::Vertex(mousePos, sf::Color::Red)
+        };
+
+        window.draw(line, 2, sf::PrimitiveType::Lines);
+    }
+
     //显示到屏幕
     window.display();
 }
