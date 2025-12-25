@@ -4,7 +4,16 @@
 static constexpr float SCALE = 30.f;
 
 // 构造函数
-Ball::Ball(PhysicsWorld& physics, sf::Vector2f position) {
+// ===== 原构造函数：默认白球 =====
+Ball::Ball(PhysicsWorld& physics, sf::Vector2f position)
+    : Ball(physics, position, sf::Color::White) {
+}
+
+// ===== 新构造函数：可指定颜色 =====
+Ball::Ball(PhysicsWorld& physics,
+           sf::Vector2f position,
+           sf::Color color) {
+
     // ---------- 图形部分 ----------
     shape.setRadius(10.f);
     shape.setOrigin({10.f, 10.f});
