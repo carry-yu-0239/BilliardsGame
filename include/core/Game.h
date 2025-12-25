@@ -1,6 +1,7 @@
 #pragma once    // 防止头文件重复包含
 
 #include <SFML/Graphics.hpp>
+#include <box2d/box2d.h>
 #include <vector>
 
 //引入物理世界与游戏对象
@@ -16,6 +17,8 @@ class Game {
     void run(); //游戏主循环
 
     private:
+
+    void initBalls();
 
     //处理输入（键盘/鼠标）
     void processEvents();

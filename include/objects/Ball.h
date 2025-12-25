@@ -8,7 +8,7 @@
 class Ball {
     public:
 
-    // 构造函数：在指定位置创建球
+    //  构造函数：在指定位置创建球
     Ball(PhysicsWorld& physics, sf::Vector2f position);
 
     //  新增构造函数：可指定颜色的构造函数

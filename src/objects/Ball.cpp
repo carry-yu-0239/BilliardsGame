@@ -17,30 +17,26 @@ Ball::Ball(PhysicsWorld& physics,
     // ---------- 图形部分 ----------
     shape.setRadius(10.f);
     shape.setOrigin({10.f, 10.f});
-    shape.setFillColor(sf::Color::White);
+    shape.setFillColor(color);
 
     // ---------- 物理部分 ----------
     b2BodyDef bodyDef;
-    bodyDef.type = b2_dynamicBody;              // 动态刚体
+    bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(position.x / SCALE, position.y / SCALE);
 
-    // 在世界中创建刚体
     body = physics.getWorld().CreateBody(&bodyDef);
 
-    // 创建圆形碰撞体
     b2CircleShape circle;
     circle.m_radius = 10.f / SCALE;
 
-    // 夹具定义
     b2FixtureDef fixtureDef;
     fixtureDef.shape = &circle;
-    fixtureDef.density = 1.f;       // 密度
-    fixtureDef.restitution = 0.9f;  // 弹性系数
-    fixtureDef.friction = 0.1f;     // 摩擦系数
+    fixtureDef.density = 1.f;
+    fixtureDef.restitution = 0.9f;
+    fixtureDef.friction = 0.1f;
 
     body->CreateFixture(&fixtureDef);
 
-    // 线性阻尼：模拟台面摩擦
     body->SetLinearDamping(0.01f);
 }
 

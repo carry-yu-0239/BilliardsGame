@@ -11,6 +11,7 @@ Game::Game()
     //  设置帧率上限为60Hz，避免CPU占用
     window.setFramerateLimit(60);
 
+    /*
     //  创建母球
     balls.emplace_back(physics, sf::Vector2f(300.f, 300.f));
 
@@ -18,6 +19,46 @@ Game::Game()
     balls.emplace_back(physics, sf::Vector2f(600.f, 280.f));
     balls.emplace_back(physics, sf::Vector2f(620.f, 300.f));
     balls.emplace_back(physics, sf::Vector2f(600.f, 320.f));
+    */
+
+    initBalls();
+}
+
+void Game::initBalls() {
+    balls.clear();
+
+
+    // === 母球 ===
+    balls.emplace_back(
+        physics,
+        sf::Vector2f(300.f, 300.f),
+        sf::Color::White
+    );
+
+    // === 目标球（标准三角形，15 球）===
+    float startX = 700.f;
+    float startY = 300.f;
+    float radius = 10.f;
+    float gap = 2.f;
+
+    int rows = 5;
+    for (int row = 0; row < rows; ++row) {
+        for (int col = 0; col <= row; ++col) {
+
+            float x = startX + row * (radius * 2 + gap);
+            float y = startY + (col - row * 0.5f) * (radius * 2 + gap);
+
+            balls.emplace_back(
+                physics,
+                sf::Vector2f(x, y),
+                sf::Color(
+                    200,
+                    60 + row * 30,
+                    60 + col * 20
+                )
+            );
+        }
+    }
 }
 
 //  ======== 游戏主循环 ========
