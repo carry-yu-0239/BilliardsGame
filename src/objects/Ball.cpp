@@ -46,6 +46,12 @@ void Ball::draw(sf::RenderWindow& window) {
     window.draw(shape);
 }
 
+sf::Vector2f Ball::getPosition() const {
+    b2Vec2 pos = body->GetPosition();
+
+    return {pos.x * SCALE, pos.y * SCALE};
+}
+
 // 施加冲量（击球）
 void Ball::applyImpulse(const sf::Vector2f& impulse) {
     body->ApplyLinearImpulseToCenter(
