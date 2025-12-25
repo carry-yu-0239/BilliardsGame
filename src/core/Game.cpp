@@ -55,6 +55,32 @@ void Game::processEvents() {
                 dragging = true;
                 dragStart = window.mapPixelToCoords({mouse->position.x, mouse->position.y});
             }
+        }*/
+
+        if (auto* mouse = event->getIf<sf::Event::MouseButtonPressed>()) {
+            if (mouse->button == sf::Mouse::Button::Left) {
+
+                sf::Vector2f mousePos =
+                    window.mapPixelToCoords({mouse->position.x, mouse->position.y});
+
+                // 母球当前位置（balls[0] 约定为母球）
+                sf::Vector2f cuePos = balls[0].getPosition();
+
+                // 计算鼠标与母球中心的距离
+                float dist = std::hypot(mousePos.x - cuePos.x,
+                                        mousePos.y - cuePos.y);
+
+                // 只有点中母球，才允许开始蓄力
+                if (dist <= 10.f) {
+                    dragging = true;
+                    dragStart = mousePos;
+                }
+            }
+
+            // 右键取消蓄力
+            if (mouse->button == sf::Mouse::Button::Right) {
+                dragging = false;
+            }
         }
 
         //  释放鼠标：施加冲量（模拟球杆击球）
