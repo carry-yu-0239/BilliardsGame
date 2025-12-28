@@ -23,8 +23,15 @@ class Ball {
     //  获取球的当前世界坐标（像素）
     sf::Vector2f getPosition() const;
 
+    //  获取球的班半径
+    float getRadius() const;
+
+
     // 对球施加冲量（击球）
     void applyImpulse(const sf::Vector2f& impulse);
+
+    void reset(sf::Vector2f position);
+
 
     private:
 

@@ -8,6 +8,7 @@
 #include "physics/PhysicsWorld.h"
 #include "objects/Ball.h"
 #include "objects/Table.h"
+#include "objects/Pocket.h"
 
 //Game类：整个游戏的总控中心，
 //负责窗口、事件、更新、渲染
@@ -17,6 +18,10 @@ class Game {
     void run(); //游戏主循环
 
     private:
+
+    std::vector<Pocket> pockets;
+
+    void initPockets();
 
     void initBalls();
 

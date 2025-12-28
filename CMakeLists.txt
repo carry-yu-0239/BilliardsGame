@@ -23,6 +23,8 @@ add_executable(BilliardsGame
         src/physics/PhysicsWorld.cpp
         src/objects/Ball.cpp
         src/objects/Table.cpp
+        include/objects/Pocket.h
+        src/objects/Pocket.cpp
 )
 
 target_include_directories(BilliardsGame

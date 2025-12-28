@@ -20,10 +20,26 @@ Game::Game()
     balls.emplace_back(physics, sf::Vector2f(620.f, 300.f));
     balls.emplace_back(physics, sf::Vector2f(600.f, 320.f));
     */
-
+    initPockets();
     initBalls();
 }
 
+//  生成球洞
+void Game::initPockets() {
+    pockets.clear();
+
+    float r = 18.f;
+
+    pockets.emplace_back(sf::Vector2f(50.f, 50.f), r);
+    pockets.emplace_back(sf::Vector2f(500.f, 50.f), r);
+    pockets.emplace_back(sf::Vector2f(950.f, 50.f), r);
+
+    pockets.emplace_back(sf::Vector2f(50.f, 550.f), r);
+    pockets.emplace_back(sf::Vector2f(500.f, 550.f), r);
+    pockets.emplace_back(sf::Vector2f(950.f, 550.f), r);
+}
+
+//  生成球
 void Game::initBalls() {
     balls.clear();
 
@@ -145,8 +161,38 @@ void Game::processEvents() {
 void Game::update(float dt) {
     //  推进Box2D物理模拟
     physics.step(dt);
-    //  同步每个球的物理状态到图形
-    for (auto& b : balls) b.update();
+
+    // 用索引遍历，方便删除
+    for (size_t i = 0; i < balls.size(); ) {
+
+        balls[i].update();
+
+        bool potted = false;
+
+        for (const auto& pocket : pockets) {
+            float ballRadius = balls[i].getRadius();
+
+            if (pocket.contains(balls[i].getPosition(), ballRadius)) {
+
+                potted = true;
+                break;
+            }
+        }
+
+        if (potted) {
+            if (i == 0) {
+                // 母球进洞：重置位置
+                balls[i].reset(sf::Vector2f(300.f, 300.f));
+                ++i;
+            } else {
+                // 目标球进洞：移除
+                balls.erase(balls.begin() + i);
+            }
+        } else {
+            ++i;
+        }
+    }
+
 }
 
 //  ========  渲染函数  ========
@@ -157,6 +203,11 @@ void Game::render() {
 
     //  绘制桌子
     table.draw(window);
+
+    //   绘制球洞
+    for (const auto& p : pockets)
+        p.draw(window);
+
 
     //  绘制所有球
     for (auto& b : balls) b.draw(window);

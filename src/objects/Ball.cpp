@@ -51,11 +51,27 @@ void Ball::draw(sf::RenderWindow& window) {
     window.draw(shape);
 }
 
+//  获取球的半径
+float Ball::getRadius() const {
+    return shape.getRadius();
+}
+
 sf::Vector2f Ball::getPosition() const {
     b2Vec2 pos = body->GetPosition();
 
     return {pos.x * SCALE, pos.y * SCALE};
 }
+
+//  reset球
+void Ball::reset(sf::Vector2f position) {
+    body->SetTransform(
+        b2Vec2(position.x / SCALE, position.y / SCALE),
+        0.f
+    );
+    body->SetLinearVelocity(b2Vec2_zero);
+    body->SetAngularVelocity(0.f);
+}
+
 
 // 施加冲量（击球）
 void Ball::applyImpulse(const sf::Vector2f& impulse) {
